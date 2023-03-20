@@ -67,6 +67,9 @@ public class Account implements UserDetails {
 	@OneToMany(mappedBy = "account_id")
 	public Set<ReadingNoteComment> readingNoteComment;
 	
+	@OneToMany(mappedBy = "account_id")
+	public Set<Room> room;
+	
 //    @PrePersist
 //    public void createdAt() {
 //        this.created_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -116,5 +119,5 @@ public class Account implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
+// .account_id(0L) // 디폴트 값으로 0L을 설정
 }

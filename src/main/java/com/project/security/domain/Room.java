@@ -1,5 +1,6 @@
 package com.project.security.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,19 +9,30 @@ import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+//@Table(name = "room"")
 
 @Entity
 @Getter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
-//@Setter
+
+@Data
+
 public class Room {
-	@Id
+	
+	@Id 
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	//@NotNull
 	private Long id;
 	
 	private String title;
@@ -35,6 +47,10 @@ public class Room {
 	
 	private Integer limitOfEnrollments;
 
+	
+	@Column(name = "account_id", nullable=true) //account_id
+	
+	private Long account_id;
 	
 	//from service
 	public void changeTitle(String title) {

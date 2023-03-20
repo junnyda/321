@@ -35,7 +35,7 @@ public class RoomController {
 	@RequestMapping(value="/room", method=RequestMethod.POST)
 	//@PostMapping("/room")
 	// @ResponseStatus(value = HttpStatus.CREATED)
-	 public SuccessResponse createRoom( RoomDTO roomDTO) { //@Valid @RequestBody
+	 public SuccessResponse createRoom( @Valid @RequestBody RoomDTO roomDTO) { //@Valid 
 		 RoomDTO room = roomService.createRoom(roomDTO);
 		 
 		 return SuccessResponse.success(room);

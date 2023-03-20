@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,6 +19,7 @@ public class RoomDTO {
 	
 	@NotBlank(message = "제목을 입력해주세요.")
 	private String title;
+	
 	@NotBlank(message = "내용을 입력해주세요.")
 	private String category;
 	
