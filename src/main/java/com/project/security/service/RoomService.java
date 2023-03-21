@@ -18,8 +18,8 @@ public class RoomService {
 	private final RoomRepository roomRepository;
 	
 	
-	public RoomDTO getRoom(Long roomID) {
-		Optional<Room> byId = roomRepository.findById(roomID);
+	public RoomDTO getRoom(Long iD) {
+		Optional<Room> byId = roomRepository.findById(iD);
 		
         Room findRoom = byId.orElseThrow(() -> new IllegalArgumentException("해당 모임이 존재하지 않습니다."));
 
@@ -30,18 +30,19 @@ public class RoomService {
         		.tag(findRoom.getTag())
         		.location(findRoom.getLocation())
         		.description(findRoom.getDescription())
-        		.limitOfEnrollments(findRoom.getLimitOfEnrollments())
+        		.limit_of_enrollments(findRoom.getLimit_of_enrollments())
         		.build();
         	}
 	
 	public RoomDTO createRoom(RoomDTO roomDTO) {
         Room room = Room.builder()
+        		//.id(roomDTO.getId())
         		.title(roomDTO.getTitle())
         		.category(roomDTO.getCategory())
         		.tag(roomDTO.getTag())
         		.location(roomDTO.getLocation())
         		.description(roomDTO.getDescription())
-        		.limitOfEnrollments(roomDTO.getLimitOfEnrollments())
+        		.limit_of_enrollments(roomDTO.getLimit_of_enrollments())
         	    //.createAt(LocalDateTime.now())
         		.build();
 
@@ -58,25 +59,24 @@ public class RoomService {
 		//return roomRepository.save(roomDTO);
     }
 
-	public RoomDTO updateRoom(Long roomId, RoomDTO roomDTO) {
-        Optional<Room> byId = roomRepository.findById(roomId);
+	public RoomDTO updateRoom(Long id, RoomDTO roomDTO) {
+        Optional<Room> byId = roomRepository.findById(id);
         Room room = byId.orElseThrow(() -> new IllegalArgumentException("해당 모임이 존재하지 않거나 수정이 안됬습니다."));
 
-        //post.changeTitle(postDTO.getTitle());
         room.changeTitle(roomDTO.getTitle());
         room.changeCategory(roomDTO.getCategory());
         room.changeTag(roomDTO.getTag());
         room.changeLocation(roomDTO.getLocation());
         room.changeDescription(roomDTO.getDescription());
-        room.changeLimitOfEnrollments(roomDTO.getLimitOfEnrollments());
+        room.changeLimit_of_enrollments(roomDTO.getLimit_of_enrollments());
 
         return RoomDTO.builder()
                 .id(room.getId())
                 .build();
     }
 
-    public void deleteRoom(Long roomId) {
-        Optional<Room> byId = roomRepository.findById(roomId);
+    public void deleteRoom(Long id) {
+        Optional<Room> byId = roomRepository.findById(id);
         Room room = byId.orElseThrow(() -> new IllegalArgumentException("해당 모임이 존재하지않거나 수정이 안됬습니다."));
 
         roomRepository.delete(room);
